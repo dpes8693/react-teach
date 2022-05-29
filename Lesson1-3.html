@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>成功引用React18，使用JSX語法</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- 引用開始 -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 引用結束 -->
+
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(
+        <h1>注意看type="text/babel"，思考看看為什麼JS裡面居然可以寫html??</h1>
+      );
+    </script>
+  </body>
+</html>

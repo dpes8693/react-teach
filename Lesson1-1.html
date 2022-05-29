@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>cdn引用</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+      function Hello() {
+        return <h1>React 17，W3school提供的範例是舊版本<hr/><a target="_blank" href="https://www.w3schools.com/react/react_getstarted.asp">來源</a></h1>;
+      }
+
+      ReactDOM.render(<Hello />, document.getElementById('mydiv'))
+    </script>
+
+  </body>
+</html>
