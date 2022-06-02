@@ -25,9 +25,7 @@
 
     <!-- Load our React component. -->
     <script>
-      const e = React.createElement;
-
-      //在React 16.8以前都是用class 但問題很多 對新手也不友善...
+      //在React 16.8以前都是用class 但對新手不友善...遇到特定場合難以維護
       //看不懂沒關係 感受一下
       class LikeButton extends React.Component {
         constructor(props) {
@@ -40,7 +38,7 @@
             return "You liked this.";
           }
 
-          return e(
+          return React.createElement(
             "button",
             { onClick: () => this.setState({ liked: true }) },
             "Like"
@@ -50,7 +48,8 @@
 
       const domContainer = document.querySelector("#like_button_container");
       const root = ReactDOM.createRoot(domContainer);
-      root.render(e(LikeButton));
+      root.render(React.createElement(LikeButton));
+
     </script>
   </body>
 </html>

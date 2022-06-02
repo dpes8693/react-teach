@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <!-- 參考 https://zh-hant.reactjs.org/docs/rendering-elements.html -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>使用JSX 範例x3</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- 引用開始 -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 引用結束 -->
+
+    <script type="text/babel">
+      /**
+       * 下面三個範例 個別取消註解看看
+       *
+       * */
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+
+      // JSX 三元運算子 如果用一般的if會GG(有大括號)
+      const inputValue = "1000";
+      const element = (
+        <h1>Hello, {Number(inputValue) > 100 ? "有錢人" : "普通人"}!</h1>
+      );
+      root.render(element);
+
+      
+      // JSX 用陣列傳多個tag
+      // const elementArray = [
+      //   <li key="1"> apple</li>,
+      //   <li key="2"> pen</li>,
+      //   <li key="3"> pineapple</li>,
+      // ];
+      // root.render(elementArray);
+
+
+      // JSX 用map將文字陣列渲染成<li>
+      // const stringArray = ["buy a apple", "buy a pen", "buy a egg"];
+      // root.render(
+      //   <div>
+      //     {
+      //       stringArray.map((text, index) => (
+      //         <li key={index}>{text}</li>
+      //       ))
+      //     }
+      //   </div>
+      // );
+    </script>
+  </body>
+</html>
