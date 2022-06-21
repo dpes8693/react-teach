@@ -15,13 +15,27 @@
 2-1
 
 - babel
-- JSX
+- JSX {function(參數)}
+- 語法
   - ReactDOM.createRoot(root)
   - root.render
-- Self-Closing  
+- Self-Closing
 - SPA
 
 2-2
-input 範例，傳入 Style
+
+- JSX
+  - 三元運算子
+  - 用陣列傳多個 tag
+  - 用 map 將文字陣列渲染成`<li>`
+
+更新 UI 唯一的方式是建立一個新的 element，並且將它傳入到 root.render
+
+2-3
+
+- Functional Component
+  - 首字大寫(function 和 tag 都是)
+  - return JSX 習慣用(小括號包起來)
+  - 參數傳遞 porps
 
 ===

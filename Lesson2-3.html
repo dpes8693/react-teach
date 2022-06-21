@@ -41,8 +41,19 @@
       function StringArray() {
         return (
           <div>
-            {["buy a apple", "buy a pen", "buy a egg"].map((text, index) => (
-              <li key={index}>{text}</li>
+            {["buy a cat", "buy a dog", "buy an egg"].map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </div>
+        );
+      }
+
+      function ObjectArray() {
+        const ObjArray = [{id:1,name:'a'},{id:2,name:'b'},{id:3,name:'c'}]
+        return (
+          <div>
+            {ObjArray.map((item, index) => (
+              <li key={index}>{item.id + item.name}</li>
             ))}
           </div>
         );
@@ -56,6 +67,8 @@
           <ElementArray />
           <br />
           <StringArray />
+          <br />
+          <ObjectArray />
         </div>
       );
 
