@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <!-- 參考 https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit -->
+  <!-- https://ithelp.ithome.com.tw/articles/10243091 -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>props</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- 引用開始 -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 引用結束 -->
+
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      const { useState, useEffect, useContext } = React;
+      // 設計一個基本的登入表單 包 含email 和 密碼
+
+      function InputRow(props) {
+        console.log(props);
+        // 使用解構，這樣就不用一直打props.title props.pattern
+        const { title, pattern, placeholder, name } = props;
+        return (
+          <React.Fragment>
+            <label htmlFor={name}>{title}</label>
+            <input
+              type="text"
+              required
+              pattern={pattern}
+              placeholder={placeholder}
+              name={name}
+              id={name}
+            />
+          </React.Fragment>
+        );
+      }
+
+      function Button(props) {
+        console.log(props);
+        return <button>Login</button>;
+      }
+
+      //  這邊用 function 包起來再 return 元素
+      //   pattern隨便填一個
+      function mixAll(props) {
+        return (
+          <form>
+            <h1>Login Page</h1>
+            <br />
+            <InputRow
+              title="Email:"
+              pattern="\w+"
+              placeholder="abc@gmail.com"
+              name="email"
+            />
+            <br />
+            <InputRow
+              title="Password:"
+              pattern="\w+"
+              placeholder="8+ character"
+              name="password"
+            />
+            <br />
+            <Button />
+          </form>
+        );
+      }
+
+      root.render(mixAll());
+      /**筆記
+       *  - 參數傳遞有三種 我=>子元件; 我=>父元件; 我=>其他
+       * 這邊是 爸爸給兒子
+       */
+    </script>
+  </body>
+</html>

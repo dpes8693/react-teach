@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>子打字傳給父</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- 引用開始 -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 引用結束 -->
+
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      const { useState, useEffect, useContext } = React;
+      // 延續3-1加上以下功能
+      // a.子傳給父
+
+      function InputRow(props) {
+        // 新增一個onEditor
+        const { title, pattern, placeholder, name, onEditor } = props;
+        return (
+          <React.Fragment>
+            <label htmlFor={name}>{title}</label>
+            <input
+              type="text"
+              required
+              pattern={pattern}
+              placeholder={placeholder}
+              name={name}
+              id={name}
+              onChange={(e) => onEditor({ name, value: e.target.value })}
+            />
+          </React.Fragment>
+        );
+      }
+
+      function Button(props) {
+        return <button onClick={(e) => e}>Login</button>;
+      }
+
+      function mixAll(props) {
+        // 新增一個onEditor
+        const onEditor = (value) => {
+          console.log("回傳:", value);
+          // 可以做其他事情例如 setState(value)
+        };
+
+        return (
+          <form>
+            <h1>Login Page</h1>
+            <br />
+            <InputRow
+              title="Email:"
+              pattern="\w+"
+              placeholder="abc@gmail.com"
+              name="email"
+              onEditor={onEditor}
+            />
+            <br />
+            <InputRow
+              title="Password:"
+              pattern="\w+"
+              placeholder="8+ character"
+              name="password"
+              onEditor={onEditor}
+            />
+            <br />
+            <Button />
+          </form>
+        );
+      }
+
+      root.render(mixAll());
+      /**筆記
+       *- Function Component 設值改值用 [state,setState] = useState
+       *- Class Component 會用 state 和 this.setState()
+       *
+       */
+    </script>
+  </body>
+</html>
