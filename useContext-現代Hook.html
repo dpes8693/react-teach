@@ -1,0 +1,66 @@
+<!-- Function+Hook=UseContext -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+      const el = ReactDOM.createRoot(document.getElementById("root"));
+      const { useState, useEffect, useContext } = React;
+
+      var Heirloom = React.createContext();
+
+      function GrandFather(props) {
+        const [secret, setSecret] = useState("work harder or work smarter");
+        const heirloomState = { secret, setSecret };
+
+        return (
+          <Heirloom.Provider value={heirloomState}>
+            <Father hyo={123} />
+          </Heirloom.Provider>
+        );
+      }
+
+      function Father(props) {
+        console.log(props);
+        return (
+          <div>
+            <Me />
+            <hr />
+            <h1>{props.hyo}</h1>
+          </div>
+        );
+      }
+
+      function Me(props) {
+        const { secret, setSecret } = useContext(Heirloom);
+        const doTest = () => {
+          setSecret("Work smarter");
+          document.title = Date();
+        };
+        return (
+          <div>
+            <h3>{secret}</h3>
+            <button onClick={doTest}>test</button>
+          </div>
+        );
+      }
+
+      el.render(<GrandFather />);
+    </script>
+  </body>
+</html>

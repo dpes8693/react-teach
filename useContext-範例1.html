@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      const el = ReactDOM.createRoot(document.getElementById("root"));
+
+      function ToggleList(props) {
+        const [btnCounter, setBtnCounter] = React.useState(0);
+        const 接力棒 = (內部參數, 哪個傢伙的id) => {
+          console.log(內部參數, 哪個傢伙的id);
+          let temp = btnCounter;
+          if (內部參數 === true) temp++;
+          else temp--;
+          setBtnCounter(temp);
+        };
+
+        return (
+          <div>
+            <span>目前有{btnCounter}個按鈕亮著</span>
+            <br />
+            <Toggle 外部參數={接力棒} myId={1} />
+            <Toggle 外部參數={接力棒} myId={2} />
+            <Toggle 外部參數={接力棒} myId={3} />
+          </div>
+        );
+      }
+
+      function Toggle(props) {
+        const { 外部參數, myId } = props; //解構賦值
+        const [toggle, setToggle] = React.useState(true);
+        const doClick = () => {
+          setToggle(!toggle);
+        };
+        // 要回傳所以額外寫一個方法，可以區分是手動還是別人丟props
+        const 手動按按鈕 = () => {
+          doClick();
+          return 外部參數(toggle, myId);
+        };
+
+        return (
+          <button onClick={(e) => 手動按按鈕()}>
+            {toggle ? "開燈" : "關燈壞壞"}
+          </button>
+        );
+      }
+
+      el.render(<ToggleList />);
+    </script>
+  </body>
+</html>
